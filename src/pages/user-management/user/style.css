@@ -1,0 +1,197 @@
+.user-management-page .breadcrumb-header {
+    margin-bottom: 18px !important;
+}
+
+.user-management-page .left-content {
+    max-width: 620px !important;
+}
+
+.user-management-page .left-content .form-control.rounded-pill {
+    height: 42px;
+    font-size: 14px !important;
+}
+
+.user-management-page .row-sm {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.user-management-page .row-sm>[class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.user-list-table {
+    table-layout: fixed;
+    width: 100%;
+    border: 2px solid #0a62f6 !important;
+}
+
+.user-list-table th:nth-child(1),
+.user-list-table td:nth-child(1) {
+    width: 13%;
+}
+
+.user-list-table th:nth-child(2),
+.user-list-table td:nth-child(2) {
+    width: 12%;
+}
+
+.user-list-table th:nth-child(3),
+.user-list-table td:nth-child(3) {
+    width: 14%;
+}
+
+.user-list-table th:nth-child(4),
+.user-list-table td:nth-child(4) {
+    width: 11%;
+}
+
+.user-list-table th:nth-child(5),
+.user-list-table td:nth-child(5) {
+    width: 13%;
+}
+
+.user-list-table th:nth-child(6),
+.user-list-table td:nth-child(6) {
+    width: 12%;
+}
+
+.user-list-table th:nth-child(7),
+.user-list-table td:nth-child(7) {
+    width: 8%;
+    text-align: center;
+}
+
+.user-list-table th:nth-child(8),
+.user-list-table td:nth-child(8) {
+    width: 11%;
+    text-align: center;
+}
+
+.user-list-table th:nth-child(9),
+.user-list-table td:nth-child(9) {
+    width: 9%;
+    text-align: center;
+}
+
+.user-status-switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 16px;
+    margin: 0;
+}
+
+.user-status-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.user-status-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    border-radius: 20px;
+    background-color: #d7dce5;
+    transition: background-color 0.2s ease;
+}
+
+.user-status-slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.2s ease;
+}
+
+.user-status-switch input:checked+.user-status-slider {
+    background-color: #005fff;
+}
+
+.user-status-switch input:checked+.user-status-slider:before {
+    transform: translateX(12px);
+}
+
+.user-status-switch input:disabled+.user-status-slider {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.user-status-text {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.user-status-text.is-active {
+    color: #005fff;
+}
+
+.user-status-text.is-inactive {
+    color: #667085;
+}
+
+.user-permission-block {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 13px;
+    color: #475467;
+}
+
+@media (max-width: 1199px) {
+    .user-management-page .main-content-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 991px) {
+    .user-list-table {
+        min-width: 900px;
+    }
+}
+
+@media (max-width: 767px) {
+    .user-list-table {
+        min-width: 0 !important;
+        table-layout: auto;
+        border: 0 !important;
+    }
+
+    .user-list-table th:nth-child(n),
+    .user-list-table td:nth-child(n) {
+        width: 100% !important;
+        text-align: inherit !important;
+    }
+
+    .user-list-table td {
+        white-space: normal !important;
+    }
+
+    .user-list-table .user-status-switch {
+        margin-left: auto;
+    }
+}
+
+
+
+.user-list-table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.user-list-table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.user-list-table tbody tr:nth-child(odd) td {
+    background: #f4f6fa !important;
+}
+
+.user-list-table tbody tr:nth-child(even) td {
+    background: #eceff4 !important;
+}

@@ -1,0 +1,26 @@
+.breadcrumbs {
+    max-width: 100%;
+    display: inline-flex;
+    margin: -1rem 1rem 2rem;
+    background: #f1f1f1;
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    border-radius: 30px;
+}
+
+.breadcrumbs>* {
+    margin-right: 10px;
+}
+
+.breadcrumbs .crumb:after {
+    content: '>';
+    margin-left: 10px;
+}
+
+.breadcrumbs .crumb:last-child:after {
+    display: none;
+}
+
+.breadcrumbs .crumb a {
+    color: #1e211e;
+    font-size: medium;
+}

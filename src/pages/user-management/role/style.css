@@ -1,0 +1,354 @@
+.role-form-modal-dialog {
+    width: 85vw;
+    max-width: 85vw !important;
+}
+
+.role-management-page .breadcrumb-header {
+    margin-bottom: 18px !important;
+}
+
+.role-management-page .left-content {
+    max-width: 620px !important;
+}
+
+.role-management-page .left-content .form-control.rounded-pill {
+    height: 42px;
+    font-size: 14px !important;
+}
+
+.role-management-page .row-sm {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.role-management-page .row-sm > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.role-list-table thead th {
+    background-color: #005fff;
+    color: #fff;
+    border: 0 !important;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 14px 16px;
+    line-height: 1.2;
+}
+
+.role-list-table thead th .datatable-sort-icon {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #e3ecff;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.role-list-table {
+    table-layout: fixed;
+    width: 100%;
+    border: 0 !important;
+}
+
+.role-list-table tbody td {
+    font-size: 12px;
+    color: #475467;
+    padding: 14px 16px;
+    vertical-align: middle;
+    border: 0 !important;
+    line-height: 1.25;
+}
+
+.role-list-table.table,
+.role-list-table.table-bordered,
+.role-list-table.table > :not(caption) > * > *,
+.role-list-table.table-bordered > :not(caption) > * > * {
+    border: 0 !important;
+}
+
+/* .role-list-table tbody tr:nth-child(even) td {
+    background-color: #f3f6fb;
+}
+
+.role-list-table tbody tr:nth-child(odd) td {
+    background-color: #ffffff;
+} */
+
+.role-list-table .text-center {
+    white-space: nowrap;
+}
+
+.role-list-table td {
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.role-list-table th:nth-child(1),
+.role-list-table td:nth-child(1) {
+    width: 24%;
+}
+
+.role-list-table th:nth-child(2),
+.role-list-table td:nth-child(2) {
+    width: 34%;
+}
+
+.role-list-table th:nth-child(3),
+.role-list-table td:nth-child(3) {
+    width: 8%;
+    text-align: center;
+}
+
+.role-list-table th:nth-child(4),
+.role-list-table td:nth-child(4) {
+    width: 8%;
+    text-align: center;
+}
+
+.role-list-table th:nth-child(5),
+.role-list-table td:nth-child(5) {
+    width: 12%;
+    text-align: center;
+}
+
+.role-list-table th:nth-child(6),
+.role-list-table td:nth-child(6) {
+    width: 8%;
+    text-align: center;
+}
+
+.role-list-table td:nth-child(6) .btn-link {
+    margin-right: 8px !important;
+    padding: 0 !important;
+}
+
+.role-list-table td:nth-child(6) .btn-link:last-child {
+    margin-right: 0 !important;
+}
+
+.role-list-table td:nth-child(6) .btn-link:first-child {
+    color: #6b7280 !important;
+}
+
+.role-list-table td:nth-child(6) .btn-link:last-child {
+    color: #ef4444 !important;
+}
+
+.role-status-switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 16px;
+    margin: 0;
+}
+
+.role-status-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.role-status-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    border-radius: 20px;
+    background-color: #d7dce5;
+    transition: background-color 0.2s ease;
+}
+
+.role-status-slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.2s ease;
+}
+
+.role-status-switch input:checked + .role-status-slider {
+    background-color: #005fff;
+}
+
+.role-status-switch input:checked + .role-status-slider:before {
+    transform: translateX(12px);
+}
+
+.role-status-switch input:disabled + .role-status-slider {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.role-status-text {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.role-status-text.is-active {
+    color: #005fff;
+}
+
+.role-status-text.is-inactive {
+    color: #667085;
+}
+
+.table-pagination-compact {
+    font-size: 12px;
+    color: #475467;
+    margin-top: 14px !important;
+}
+
+.table-pagination-compact .table-pagination-right {
+    margin-left: auto;
+}
+
+.table-pagination-compact .selectpage {
+    min-width: 64px;
+    height: 32px;
+    font-size: 12px;
+}
+
+.table-pagination-compact .table-page-text {
+    white-space: nowrap;
+}
+
+.table-pagination-compact .tablebutton {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #d0d5dd;
+    color: #667085;
+    background: #fff;
+    padding: 0;
+}
+
+.role-delete-modal-dialog {
+    max-width: 430px !important;
+}
+
+.role-delete-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.role-delete-textarea {
+    width: 100%;
+    min-height: 178px;
+    resize: none;
+    border: 1px solid #bfc9d9;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #475467;
+    background: #ffffff;
+}
+
+.role-delete-textarea:focus {
+    outline: none;
+    border-color: #99b4f4;
+    box-shadow: 0 0 0 2px rgba(0, 95, 255, 0.12);
+}
+
+.role-delete-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.role-delete-counter {
+    font-size: 12px;
+    color: #667085;
+}
+
+.role-delete-submit-btn {
+    border: 0;
+    min-width: 98px;
+    height: 32px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ff4f4f 0%, #f81722 100%);
+    box-shadow: 0 4px 12px rgba(248, 23, 34, 0.35);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 18px;
+}
+
+.role-delete-submit-btn:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.role-permission-block {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 13px;
+    color: #475467;
+}
+
+@media (max-width: 991px) {
+    .role-list-table {
+        min-width: 760px;
+    }
+}
+
+@media (max-width: 767px) {
+    .role-list-table {
+        min-width: 0 !important;
+        table-layout: auto;
+        border: 0 !important;
+    }
+
+    .role-list-table th:nth-child(n),
+    .role-list-table td:nth-child(n) {
+        width: 100% !important;
+        text-align: inherit !important;
+    }
+
+    .role-list-table td {
+        white-space: normal !important;
+    }
+
+    .role-list-table .role-status-switch {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .role-form-modal-dialog {
+        width: 96vw;
+        max-width: 96vw !important;
+        margin: 0.75rem auto;
+    }
+
+    .permission-wildcard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .permission-modules {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.role-list-table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.role-list-table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.role-list-table tbody tr:nth-child(odd) td {
+    background: #f4f6fa !important;
+}
+
+.role-list-table tbody tr:nth-child(even) td {
+    background: #eceff4 !important;
+}

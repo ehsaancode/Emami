@@ -1,0 +1,100 @@
+/* CSS for Custom Components */
+.main-header-left .btn.common_dropdown {
+    position: relative;
+    left: 14px;
+    border-left: 1px solid #ededf5 !IMPORTANT;
+    border-radius: 5px;
+    width:250px;
+}
+
+.header-search-container{
+    position: absolute;
+    top: 100%;
+    left: 15%;
+    width: 80%;
+    /* background: var(--primary-bg-color-light); */
+    border-radius: 5px;
+    z-index: 99;
+}
+.header-search-container:before {
+    /* content: "";
+    width: 13px;
+    height: 13px;
+    background: var(--primary-bg-color-light);
+    position: absolute;
+    top: -7px;
+    left: 318px;
+    transform: rotate(45deg);
+    border-top: 1px solid var(--primary-bg-color-light);
+    border-left: 1px solid var(--primary-bg-color-light); */
+
+    border-left: 1px solid var(--primary-bg-color-light);
+    border-top: 1px solid var(--primary-bg-color-light);
+    content: "";
+    height: 13px;
+    left: 15px;
+    top: -7px;
+    transform: rotate(45deg);
+    width: 13px;
+    background: #2a2e3f;
+    display: inline-block;
+    position: absolute;
+}
+
+/* rendered HTML from API */
+.store-name {
+    font-weight: bold;
+}
+
+.header-search-container .store-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.1rem;
+}
+
+.main-message-list.header-search-element{
+    /* padding: 1rem;
+    height: 115px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    background: #fff;
+    border-radius: 5px; */
+
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0rem;
+    max-height: 215px;
+    min-height: 92px;
+    overflow-y: auto;
+    padding: 1rem;
+    min-width: 220px;
+}
+
+.header-search-element .text-primary{
+    color:#78a3eb !important;
+}
+
+/* below is for styling button in OutletDetails 2nd Column*/
+
+.custom-button-holder .col {
+    flex-basis: content;
+    flex-grow: unset;
+    max-width: 100%;
+    padding: 0 5px 5px;
+    /* width: auto !IMPORTANT; */
+}
+
+.custom-button-padding{
+    flex: 1 1 auto;
+    padding: 1.25rem 1.25rem 0.5rem !important;
+}
+
+.details-tabs-resize .nav-tabs .nav-link {
+    padding: 10px 9px !important;
+    font-size: 13px;
+}
+
+.date-picker-style .react-datepicker-wrapper{ width: 100% !important;}

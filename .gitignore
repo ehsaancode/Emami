@@ -1,0 +1,134 @@
+# -----------------------------
+
+# Dependencies
+
+# -----------------------------
+
+node_modules/
+jspm_packages/
+.pnp/
+.pnp.js
+
+# -----------------------------
+
+# Build outputs
+
+# -----------------------------
+
+dist/
+build/
+.next/
+out/
+.nuxt/
+.vercel/
+.cache/
+coverage/
+storybook-static/
+
+# -----------------------------
+
+# Environment secrets
+
+# -----------------------------
+
+.env
+.env.*
+!.env.example
+
+# -----------------------------
+
+# Logs
+
+# -----------------------------
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# -----------------------------
+
+# OS files
+
+# -----------------------------
+
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+
+# Editor settings
+
+# -----------------------------
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# -----------------------------
+
+# Testing
+
+# -----------------------------
+
+coverage/
+.nyc_output/
+
+# -----------------------------
+
+# TypeScript
+
+# -----------------------------
+
+*.tsbuildinfo
+
+# -----------------------------
+
+# Package manager cache
+
+# -----------------------------
+
+.npm/
+.yarn/
+.pnpm-store/
+
+# -----------------------------
+
+# Misc
+
+# -----------------------------
+
+*.local
+.eslintcache
+parcel-cache/
+
+# -----------------------------
+
+# IMPORTANT (keep lock file for apps)
+
+# -----------------------------
+
+# DO NOT ignore package-lock.json for applications
+
+# package-lock.json
+node_modules/
+dist/
+.next/
+.env
+coverage/
+*.svg
+# Images
+*.jpg
+*.jpeg
+
+# Fonts
+*.ttf
+*.eot
+*.woff
+*.woff2
+*.png
+*.md

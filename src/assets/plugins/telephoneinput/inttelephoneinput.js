@@ -1,0 +1,5 @@
+$(function() {
+    $("#mobile-number").intlTelInput();
+});
+
+

@@ -1,0 +1,89 @@
+.app-input-field {
+  margin-bottom: 14px;
+}
+
+.app-input-label {
+  margin: 0 0 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f343a;
+  line-height: 1.2;
+}
+
+.app-input-required {
+  color: #dc2626;
+  font-size: 12px;
+}
+
+.app-input-control {
+  position: relative;
+}
+
+.app-input-element,
+.app-input-select,
+.app-input-textarea {
+  width: 100%;
+  border: 1px solid #d9dee7 !important;
+  background: #f8fafd !important;
+  color: #1f2937 !important;
+  font-size: 13px !important;
+}
+
+.app-input-element,
+.app-input-select {
+  min-height: 42px;
+  height: 42px;
+  border-radius: 999px !important;
+  padding: 0 14px !important;
+}
+
+.app-input-textarea {
+  min-height: 92px;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  resize: vertical;
+}
+
+.app-input-element::placeholder,
+.app-input-textarea::placeholder {
+  color: #98a2b3 !important;
+}
+
+.app-input-element:focus,
+.app-input-select:focus,
+.app-input-textarea:focus {
+  background: #ffffff !important;
+  border-color: #8cb3ff !important;
+  box-shadow: 0 0 0 3px rgba(11, 99, 246, 0.12) !important;
+}
+
+.app-input-control.has-icon .app-input-element,
+.app-input-control.has-icon .app-input-select,
+.app-input-control.has-icon .app-input-textarea {
+  padding-right: 38px !important;
+}
+
+.app-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #98a2b3;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.app-input-error {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.app-input-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #667085;
+}
