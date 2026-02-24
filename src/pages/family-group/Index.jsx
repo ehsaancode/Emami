@@ -16,6 +16,8 @@ import DeleteIcon from "../../pagecomponents/Icons/DeleteIcon";
 import ViewIcon from "../../pagecomponents/Icons/ViewIcon";
 import "./style.css";
 import AddMemberIcon from "../../pagecomponents/Icons/AddMemberIcon";
+import { usePermission } from "../../helpers/useSectionPermissions";
+import { PERMISSION_KEYS } from "../../helpers/permissionModules";
 
 const INIT_FORM_DATA = {
     family_group_Name: "",
@@ -121,14 +123,20 @@ const FamilyGroup = () => {
     const pageSubTitle = "Organise contacts by family relationships under a single family group";
     const searchFieldPlaceholder = "Search family group by name...";
 
-    const pageButtons = [
+    const canCreateFamily = usePermission([PERMISSION_KEYS.FAMILY_CREATE, PERMISSION_KEYS.FAMILY_ALL], { mode: 'any' });
+    const canUpdateFamily = usePermission([PERMISSION_KEYS.FAMILY_UPDATE, PERMISSION_KEYS.FAMILY_ALL], { mode: 'any' });
+    const canDeleteFamily = usePermission([PERMISSION_KEYS.FAMILY_DELETE, PERMISSION_KEYS.FAMILY_ALL], { mode: 'any' });
+    const canAssignMember = usePermission([PERMISSION_KEYS.FAMILY_ASSIGN_MEMBER, PERMISSION_KEYS.FAMILY_ALL], { mode: 'any' });
+    const canReadFamily = usePermission([PERMISSION_KEYS.FAMILY_READ, PERMISSION_KEYS.FAMILY_ALL], { mode: 'any' });
+
+    const pageButtons = canCreateFamily ? [
         {
             title: "Create Family Group +",
             clickAction: () => {
                 openAddModal();
             },
         },
-    ];
+    ] : [];
 
     const PARAMS = {
         filter: {
@@ -234,7 +242,7 @@ const FamilyGroup = () => {
                 setViewFamilyGroup(row);
                 setViewModalVisible(true);
             },
-            show: true,
+            show: canReadFamily || canUpdateFamily,
             type: "icon",
         },
         {
@@ -263,7 +271,7 @@ const FamilyGroup = () => {
                 setIsEdit(true);
                 setModalVisible(true);
             },
-            show: true,
+            show: canUpdateFamily,
             type: "icon",
         },
         {
@@ -272,7 +280,7 @@ const FamilyGroup = () => {
             color: "#dc3545",
             onClick: (row) => handleDelete(row),
             // requiresConfirmation: false,
-            show: true,
+            show: canDeleteFamily,
             type: "icon",
         },
         {
@@ -280,7 +288,7 @@ const FamilyGroup = () => {
             icon: <AddMemberIcon />,
             color: "#388224",
             onClick: (row) => handleAddMember(row),
-            // show: familyAccess.canEdit || familyAccess.canModify,
+            show: canAssignMember,
             type: "icon",
         },
     ];

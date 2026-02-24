@@ -11,6 +11,8 @@ import { toastMessage } from '../../../helpers/utility';
 import { addData, deleteData, getData, updateData, updateStatusData } from '../../../redux/slices/UserSlice';
 import EditIcon from '../../../pagecomponents/Icons/EditIcon';
 import DeleteIcon from '../../../pagecomponents/Icons/DeleteIcon';
+import { usePermission } from "../../../helpers/useSectionPermissions";
+import { PERMISSION_KEYS } from "../../../helpers/permissionModules";
 import './style.css';
 
 const INIT_FORM_DATA = {
@@ -139,14 +141,19 @@ const User = () => {
   const [isSaveDisabled, setIsSaveDisabled] = useState(false);
   const [isEditUserLoading, setIsEditUserLoading] = useState(false);
   const editFetchRequestRef = useRef(0);
-  const pageButtons = [
+  const canCreateUser = usePermission([PERMISSION_KEYS.USER_CREATE]);
+  const canUpdateUser = usePermission([PERMISSION_KEYS.USER_UPDATE]);
+  const canDeleteUser = usePermission([PERMISSION_KEYS.USER_DELETE]);
+  const canUpdateStatus = usePermission([PERMISSION_KEYS.USER_STATUS]);
+
+  const pageButtons = canCreateUser ? [
     {
       title: 'Create User +',
       clickAction: () => {
         openAddModal();
       },
     },
-  ];
+  ] : [];
 
   const fetchUserData = useCallback(async () => {
     setIsLoading(true);
@@ -433,7 +440,7 @@ const User = () => {
             <input
               type="checkbox"
               checked={Number(value) === 1}
-              disabled={statusLoadingByUser[row?.user_Id]}
+              disabled={!canUpdateStatus || statusLoadingByUser[row?.user_Id]}
               onChange={() => handleStatusToggle(row)}
             />
             <span className="user-status-slider"></span>
@@ -456,7 +463,7 @@ const User = () => {
       color: '#3A3F44',
       type: 'icon',
       onClick: (row) => openEditModal(row),
-      show: true,
+      show: canUpdateUser,
     },
     {
       label: 'Delete',
@@ -464,7 +471,7 @@ const User = () => {
       color: '#ef4444',
       type: 'icon',
       onClick: (row) => handleDelete(row),
-      show: true,
+      show: canDeleteUser,
     },
   ];
 

@@ -6,6 +6,7 @@ import CustomButton from "../../../pagecomponents/Elements/Buttons/CustomButton"
 import { deleteData } from "../../../redux/slices/EventSlice";
 import { toastMessage } from "../../../helpers/utility";
 import DeleteConfirmationModal from "../../../pagecomponents/Common/DeleteConfirmationModal";
+import { PermissionGate } from "../../../helpers/useSectionPermissions";
 
 const truncateToWordLimit = (value = "", wordLimit = 2) => {
     const normalized = String(value ?? "").trim().replace(/\s+/g, " ");
@@ -250,26 +251,30 @@ const EventCard = ({
                             className="d-flex align-items-center flex-shrink-0"
                             style={styles.actionsWrap}
                         >
-                            <button
-                                className="btn"
-                                type="button"
-                                style={styles.circleBtn}
-                                onClick={handleAddSubEventClick}
-                                aria-label="Add sub event"
-                            >
-                                <FiPlus />
-                            </button>
+                            <PermissionGate permissions={["event.create", "event.update", "event.all"]}>
+                                <button
+                                    className="btn"
+                                    type="button"
+                                    style={styles.circleBtn}
+                                    onClick={handleAddSubEventClick}
+                                    aria-label="Add sub event"
+                                >
+                                    <FiPlus />
+                                </button>
+                            </PermissionGate>
 
-                            <button
-                                className="btn"
-                                type="button"
-                                style={{ ...styles.circleBtn, color: "#ff2b2b" }}
-                                onClick={handleDeleteClick}
-                                disabled={isDeleting}
-                                aria-label="Delete event"
-                            >
-                                <FiTrash2 />
-                            </button>
+                            <PermissionGate permissions={["event.delete", "event.all"]}>
+                                <button
+                                    className="btn"
+                                    type="button"
+                                    style={{ ...styles.circleBtn, color: "#ff2b2b" }}
+                                    onClick={handleDeleteClick}
+                                    disabled={isDeleting}
+                                    aria-label="Delete event"
+                                >
+                                    <FiTrash2 />
+                                </button>
+                            </PermissionGate>
 
                             {onReview && (
                                 <CustomButton onClick={onReview} style={styles.reviewButton}>

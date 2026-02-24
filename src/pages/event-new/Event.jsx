@@ -9,6 +9,7 @@ import AddEditEvent from "./Components/AddEditEvent";
 import EventFilterModal from "../event-management/components/EventFilterModal";
 import { getEventData } from "../../redux/slices/EventSlice";
 import ManageEventsModal from "./Components/ManageEventModal";
+import { PermissionGate } from "../../helpers/useSectionPermissions";
 
 const EventManagement = () => {
     const dispatch = useDispatch();
@@ -308,12 +309,14 @@ const EventManagement = () => {
                     <small>{pageSubTitle}</small>
                 </div>
                 <div className="right-content">
-                    <CustomButton
-                        title="Create Events +"
-                        className="mx-1"
-                        onClick={handleOpenCreate}
-                        style={{ backgroundColor: "#005FFF", color: "#fff" }}
-                    />
+                    <PermissionGate permissions={["event.create", "event.all"]}>
+                        <CustomButton
+                            title="Create Events +"
+                            className="mx-1"
+                            onClick={handleOpenCreate}
+                            style={{ backgroundColor: "#005FFF", color: "#fff" }}
+                        />
+                    </PermissionGate>
                 </div>
             </div>
 

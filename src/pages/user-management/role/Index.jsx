@@ -10,6 +10,8 @@ import { addData, deleteData, getData, updateData, updateStatusData } from "../.
 import DataTable from "../../../pagecomponents/Common/DataTable";
 import EditIcon from "../../../pagecomponents/Icons/EditIcon";
 import DeleteIcon from "../../../pagecomponents/Icons/DeleteIcon";
+import { usePermission } from "../../../helpers/useSectionPermissions";
+import { PERMISSION_KEYS } from "../../../helpers/permissionModules";
 import "./style.css";
 
 const INIT_FORM_DATA = { role_Name: "", role_Description: "", permission_Ids: [] };
@@ -33,14 +35,19 @@ const UserRole = () => {
     const pageSubTitle = "Easily manage your roles";
     const searchFieldPlaceholder = "Search role name...";
 
-    const pageButtons = [
+    const canCreateRole = usePermission([PERMISSION_KEYS.ROLE_CREATE]);
+    const canUpdateRole = usePermission([PERMISSION_KEYS.ROLE_UPDATE]);
+    const canDeleteRole = usePermission([PERMISSION_KEYS.ROLE_DELETE]);
+    const canUpdateStatus = usePermission([PERMISSION_KEYS.ROLE_STATUS_UPDATE]);
+
+    const pageButtons = canCreateRole ? [
         {
             title: "Create Role +",
             clickAction: () => {
                 openAddModal();
             },
         },
-    ];
+    ] : [];
 
     const [formData, setFormData] = useState(INIT_FORM_DATA);
     const [modalVisible, setModalVisible] = useState(false);
@@ -263,7 +270,7 @@ const UserRole = () => {
                         <input
                             type="checkbox"
                             checked={value === 1}
-                            disabled={statusLoadingByRole[row?.role_Id]}
+                            disabled={!canUpdateStatus || statusLoadingByRole[row?.role_Id]}
                             onChange={() => handleStatusToggle(row)}
                         />
                         <span className="role-status-slider"></span>
@@ -299,7 +306,7 @@ const UserRole = () => {
                 });
                 setModalVisible(true);
             },
-            show: true,
+            show: canUpdateRole,
         },
         {
             label: "Delete",
@@ -307,7 +314,7 @@ const UserRole = () => {
             color: "#ef4444",
             type: "icon",
             onClick: (row) => handleDelete(row),
-            show: true,
+            show: canDeleteRole,
         },
     ];
 

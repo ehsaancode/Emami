@@ -23,6 +23,8 @@ import { Form } from 'react-bootstrap';
 import { PermissionGate } from '../../helpers/useSectionPermissions';
 import ManageIcon from '../../pagecomponents/Icons/ManageIcon';
 import AddEditForm from './AddEditForm';
+import { usePermission } from '../../helpers/useSectionPermissions';
+import { PERMISSION_KEYS } from '../../helpers/permissionModules';
 
 const getInitFormData = () => ({
   salutation: 'Mr',
@@ -46,6 +48,10 @@ const Contacts = () => {
   const pageSubTitle = 'Manage your contacts';
   const searchFieldPlaceholder = 'Search contacts by name, email, or city...';
   const inviteEventId = searchParams.get('ref') || '';
+  
+  const canReadContact = usePermission([PERMISSION_KEYS.CONTACT_READ, PERMISSION_KEYS.CONTACT_ALL], { mode: 'any' });
+  const canUpdateContact = usePermission([PERMISSION_KEYS.CONTACT_UPDATE, PERMISSION_KEYS.CONTACT_ALL], { mode: 'any' });
+  const canDeleteContact = usePermission([PERMISSION_KEYS.CONTACT_DELETE, PERMISSION_KEYS.CONTACT_ALL], { mode: 'any' });
 
   const normalizeToArray = (value) => {
     if (Array.isArray(value)) return value;
@@ -404,7 +410,7 @@ const Contacts = () => {
       color: '#3A3F44',
       type: 'icon',
       onClick: (row) => openViewModal(row),
-      show: true,
+      show: canReadContact,
     },
     {
       label: 'Edit',
@@ -412,7 +418,7 @@ const Contacts = () => {
       color: '#3A3F44',
       type: 'icon',
       onClick: (row) => openEditModal(row),
-      show: true,
+      show: canUpdateContact,
     },
     {
       label: 'Delete',
@@ -420,7 +426,7 @@ const Contacts = () => {
       color: '#dc3545',
       type: 'icon',
       onClick: (row) => handleDelete(row),
-      show: true,
+      show: canDeleteContact,
     },
     {
       label: 'Manage',
@@ -437,7 +443,7 @@ const Contacts = () => {
         handleContactSelection(row);
         setManageModalVisible(true);
       },
-      show: true,
+      show: canUpdateContact,
     },
   ];
 
