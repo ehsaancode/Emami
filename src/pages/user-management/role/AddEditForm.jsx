@@ -136,8 +136,10 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
         };
       });
 
+    const allSelected = rows.length > 0 && rows.every((item) => item.actions.every((action) => action.value === true));
+
     setPermissionState({
-      wildcardEnabled,
+      wildcardEnabled: selectedPermissionIds.has(String(wildcardId)) || allSelected,
       wildcardId,
       rows,
     });
