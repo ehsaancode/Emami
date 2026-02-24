@@ -6,6 +6,7 @@ import CustomButton from "../../../pagecomponents/Elements/Buttons/CustomButton"
 import DeleteEventModal from "../../event-management/components/DeleteEventModal";
 import ReviewModal from "./ReviewModal";
 import { getStatusBadge } from "../../../helpers/statusBadge";
+import { PermissionGate } from "../../../helpers/useSectionPermissions";
 
 const EventApprovalCard = ({
     layout = "grid",
@@ -290,9 +291,11 @@ const EventApprovalCard = ({
 
                         <div className="d-flex align-items-center" style={styles.actionsWrap}>
                             {showReview && (
-                                <CustomButton onClick={() => setIsReviewModalOpen(true)}>
-                                    Review
-                                </CustomButton>
+                                <PermissionGate permissions={["event.approval.admin", "event.approval.manager"]} mode="any">
+                                    <CustomButton onClick={() => setIsReviewModalOpen(true)}>
+                                        Review
+                                    </CustomButton>
+                                </PermissionGate>
                             )}
                         </div>
                     </div>

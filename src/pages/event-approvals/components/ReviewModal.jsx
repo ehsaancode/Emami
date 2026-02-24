@@ -6,6 +6,7 @@ import RejectModal from "./RejectModal";
 import InviteesModal from "./InviteesModal";
 import { changeEventStatus } from "../../../redux/slices/EventSlice";
 import { toastMessage } from "../../../helpers/utility";
+import { PermissionGate } from "../../../helpers/useSectionPermissions";
 
 const ReviewModal = ({
     visible,
@@ -390,20 +391,24 @@ const ReviewModal = ({
                         variant="secondary"
                         onClick={onClose}
                     />
-                    <CustomButton
-                        title={approvalUi.approveLabel}
-                        variant="primary"
-                        onClick={handleApprove}
-                        loading={isSubmitting && pendingAction === "approve"}
-                        loadingText="Approving..."
-                        disabled={isSubmitting || approvalUi.approveDisabled}
-                    />
-                    <CustomButton
-                        title={approvalUi.rejectLabel}
-                        variant="danger"
-                        onClick={() => setIsRejectOpen(true)}
-                        disabled={isSubmitting || approvalUi.rejectDisabled}
-                    />
+                    <PermissionGate permissions={["event.approval.admin", "event.approval.manager"]} mode="any">
+                        <>
+                            <CustomButton
+                                title={approvalUi.approveLabel}
+                                variant="primary"
+                                onClick={handleApprove}
+                                loading={isSubmitting && pendingAction === "approve"}
+                                loadingText="Approving..."
+                                disabled={isSubmitting || approvalUi.approveDisabled}
+                            />
+                            <CustomButton
+                                title={approvalUi.rejectLabel}
+                                variant="danger"
+                                onClick={() => setIsRejectOpen(true)}
+                                disabled={isSubmitting || approvalUi.rejectDisabled}
+                            />
+                        </>
+                    </PermissionGate>
                 </div>
             </ModalWrapper>
 

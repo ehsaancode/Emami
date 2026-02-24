@@ -228,9 +228,12 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
     const uniqueIds = [...new Set(selectedPermissionIds.filter((id) => id !== null && id !== undefined))];
 
     if (permissionState.wildcardEnabled && permissionState.wildcardId) {
-      return [permissionState.wildcardId];
+      // Also return the wildcard ID along with all individual IDs
+      return [permissionState.wildcardId, ...uniqueIds];
     }
-
+    
+    // If wildcard enabled but no wildcard ID, it's safer to just return all the individual IDs anyway 
+    // since wildcardEnabled checked all the boxes.
     return uniqueIds;
   };
 
