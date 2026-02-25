@@ -129,10 +129,27 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
           })
           .filter((item) => item.id !== null && item.id !== undefined);
 
+        const otherActions = actions.filter((a) => !(isAllAction(a?.action) || isAllAction(a?.label)));
+        const allOthersChecked = otherActions.length > 0 && otherActions.every((a) => a.value === true);
+
+        const matchedActions = actions.map((action) =>
+          isAllAction(action?.action) || isAllAction(action?.label)
+            ? { ...action, value: allOthersChecked || action.value }
+            : action,
+        );
+
+        matchedActions.sort((a, b) => {
+          const isAAll = isAllAction(a?.action) || isAllAction(a?.label);
+          const isBAll = isAllAction(b?.action) || isAllAction(b?.label);
+          if (isAAll && !isBAll) return -1;
+          if (!isAAll && isBAll) return 1;
+          return 0;
+        });
+
         return {
           module: module.module,
           isAllModule: isAllModuleName(module.module),
-          actions,
+          actions: matchedActions,
         };
       });
 
@@ -150,10 +167,8 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
       const rows = [...prev.rows];
       const row = { ...rows[rowIndex] };
       const actions = [...row.actions];
-      const isAllRow = row.isAllModule || isAllModuleName(row.module);
       const clickedAction = actions[actionIndex];
-      const isAllActionClick =
-        isAllRow && (isAllAction(clickedAction?.action) || isAllAction(clickedAction?.label));
+      const isAllActionClick = isAllAction(clickedAction?.action) || isAllAction(clickedAction?.label);
 
       if (isAllActionClick) {
         const updatedActions = actions.map((action) => ({
@@ -188,9 +203,45 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
         value: checked,
       };
 
+      if (checked) {
+        actions.forEach((a, idx) => {
+          if (idx !== actionIndex) {
+            const lowerLabel = String(a?.label || '').toLowerCase();
+            const lowerAction = String(a?.action || '').toLowerCase();
+            if (
+              lowerLabel === 'read' || lowerAction === 'read' ||
+              lowerLabel === 'view' || lowerAction === 'view' ||
+              lowerLabel === 'list' || lowerAction === 'list' ||
+              lowerLabel === 'list view' || lowerAction === 'list_view'
+            ) {
+               actions[idx] = { ...actions[idx], value: true };
+            }
+          }
+        });
+      } else {
+        const hasOtherChecked = actions.some((a, idx) => idx !== actionIndex && a.value && !(isAllAction(a?.action) || isAllAction(a?.label)));
+        if (!hasOtherChecked) {
+           actions.forEach((a, idx) => {
+              const lowerLabel = String(a?.label || '').toLowerCase();
+              const lowerAction = String(a?.action || '').toLowerCase();
+              if (
+                lowerLabel === 'read' || lowerAction === 'read' ||
+                lowerLabel === 'view' || lowerAction === 'view' ||
+                lowerLabel === 'list' || lowerAction === 'list' ||
+                lowerLabel === 'list view' || lowerAction === 'list_view'
+              ) {
+                 actions[idx] = { ...actions[idx], value: false };
+              }
+           });
+        }
+      }
+
+      const otherActions = actions.filter((a) => !(isAllAction(a?.action) || isAllAction(a?.label)));
+      const allOthersChecked = otherActions.length > 0 && otherActions.every((a) => a.value === true);
+
       const updatedActions = actions.map((action) =>
-        isAllRow && (isAllAction(action?.action) || isAllAction(action?.label))
-          ? { ...action, value: actions.every((item) => item.value === true) }
+        isAllAction(action?.action) || isAllAction(action?.label)
+          ? { ...action, value: allOthersChecked }
           : action,
       );
 

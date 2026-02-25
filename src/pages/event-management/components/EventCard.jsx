@@ -67,12 +67,12 @@ const EventCard = ({
       const { payload } = await dispatch(sendForApproval({ inputData: { eventId: rawId } }));
 
       if (payload?.status !== 'success') {
-        toastMessage('error', payload?.msg || 'Failed to send for approval.');
+        toastMessage('error', payload?.msg || payload?.message || 'Failed to send for approval.');
         return;
       }
 
       setIsSentForApproval(true);
-      toastMessage('success', payload?.msg || 'Event sent for approval.');
+      toastMessage('success', payload?.msg || payload?.message || 'Event sent for approval.');
       if (requestViewAll) {
         try {
           Promise.resolve(requestViewAll()).catch(() => {
@@ -83,7 +83,7 @@ const EventCard = ({
         }
       }
     } catch (error) {
-      toastMessage('error', 'Failed to send for approval.');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to send for approval.');
     } finally {
       setIsSendingApproval(false);
     }
@@ -242,14 +242,14 @@ const EventCard = ({
     try {
       const { payload } = await dispatch(deleteData({ inputData: { event_Id: rawId } }));
       if (payload?.status !== 'success') {
-        toastMessage('error', payload?.msg || 'Failed to delete event.');
+        toastMessage('error', payload?.msg || payload?.message || 'Failed to delete event.');
         return;
       }
-      toastMessage('success', payload?.msg || 'Event deleted.');
+      toastMessage('success', payload?.msg || payload?.message || 'Event deleted.');
       setIsDeleteModalOpen(false);
       onDeleted?.();
     } catch (error) {
-      toastMessage('error', 'Failed to delete event.');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to delete event.');
     } finally {
       setIsDeleting(false);
     }

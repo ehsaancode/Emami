@@ -186,19 +186,19 @@ const ViewAllInviteeModal = ({
             );
 
             if (payload?.status !== "success") {
-                toastMessage("error", payload?.msg || "Failed to remove invitee.");
+                toastMessage("error", payload?.msg || payload?.message || "Failed to remove invitee.");
                 return;
             }
 
             setRows((prev) => prev.filter((item) => item.rowId !== row.rowId));
             setSelectedRowIds((prev) => prev.filter((rowId) => rowId !== row.rowId));
-            toastMessage("success", payload?.msg || "Invitee removed.");
+            toastMessage("success", payload?.msg || payload?.message || "Invitee removed.");
             onInviteDeleted?.({
                 ...row,
                 targetEventId,
             });
         } catch (error) {
-            toastMessage("error", "Failed to remove invitee.");
+            toastMessage("error", error?.response?.data?.msg || error?.message || "Failed to remove invitee.");
         } finally {
             setDeletingRowId("");
         }
@@ -221,7 +221,7 @@ const ViewAllInviteeModal = ({
             );
 
             if (payload?.status !== "success") {
-                toastMessage("error", payload?.msg || "Failed to remove invitees.");
+                toastMessage("error", payload?.msg || payload?.message || "Failed to remove invitees.");
                 return;
             }
 
@@ -236,9 +236,9 @@ const ViewAllInviteeModal = ({
                 });
             });
 
-            toastMessage("success", payload?.msg || "Invitees removed.");
+            toastMessage("success", payload?.msg || payload?.message || "Invitees removed.");
         } catch (error) {
-            toastMessage("error", "Failed to remove invitees.");
+            toastMessage("error", error?.response?.data?.msg || error?.message || "Failed to remove invitees.");
         } finally {
             setIsDeletingAll(false);
         }

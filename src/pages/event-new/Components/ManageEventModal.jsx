@@ -179,14 +179,14 @@ const ManageEventsModal = ({
                 deleteData({ inputData: { event_Id: rawId } })
             );
             if (payload?.status !== "success") {
-                toastMessage("error", payload?.msg || "Failed to delete event.");
+                toastMessage("error", payload?.msg || payload?.message || "Failed to delete event.");
                 return;
             }
-            toastMessage("success", payload?.msg || "Event deleted.");
+            toastMessage("success", payload?.msg || payload?.message || "Event deleted.");
             setIsDeleteModalOpen(false);
             onDeleted?.();
         } catch (error) {
-            toastMessage("error", "Failed to delete event.");
+            toastMessage("error", error?.response?.data?.msg || error?.message || "Failed to delete event.");
         } finally {
             setIsDeleting(false);
         }

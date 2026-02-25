@@ -143,7 +143,7 @@ const UserRole = () => {
             setData(apiData);
             setTotalPage(Math.ceil(total / params.pagination.limit));
         } catch (err) {
-            toastMessage("error", "Failed to fetch data");
+            toastMessage("error", err?.response?.data?.msg || err?.message || "Failed to fetch data");
         } finally {
             setIsLoading(false); // Stop loader
         }

@@ -287,14 +287,14 @@ export default function CreateNewSubEvents() {
                 if (apiPayload?.status !== "success") {
                     toastMessage(
                         "error",
-                        apiPayload?.msg || "Failed to update sub event."
+                        apiPayload?.msg || apiPayload?.message || "Failed to update sub event."
                     );
                     return;
                 }
                 toastMessage("success", apiPayload?.msg || "Sub event updated.");
                 navigate("/event-management");
             } catch (error) {
-                toastMessage("error", "Failed to update sub event.");
+                toastMessage("error", error?.response?.data?.msg || error?.message || "Failed to update sub event.");
             } finally {
                 setIsSubmitting(false);
             }
@@ -352,7 +352,7 @@ export default function CreateNewSubEvents() {
             if (apiPayload?.status !== "success") {
                 toastMessage(
                     "error",
-                    apiPayload?.msg || "Failed to create event with sub events."
+                    apiPayload?.msg || apiPayload?.message || "Failed to create event with sub events."
                 );
                 return;
             }
@@ -360,7 +360,7 @@ export default function CreateNewSubEvents() {
             toastMessage("success", apiPayload?.msg || "Event created.");
             navigate("/event-management");
         } catch (error) {
-            toastMessage("error", "Failed to create event with sub events.");
+            toastMessage("error", error?.response?.data?.msg || error?.message || "Failed to create event with sub events.");
         } finally {
             setIsSubmitting(false);
         }

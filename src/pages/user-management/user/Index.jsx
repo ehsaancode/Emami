@@ -171,7 +171,7 @@ const User = () => {
       setData(list);
       setTotalPage(Math.max(1, Math.ceil(total / params.pagination.limit)));
     } catch (error) {
-      toastMessage('error', 'Failed to fetch users.');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to fetch users.');
       setData([]);
       setTotalPage(1);
     } finally {
@@ -201,7 +201,7 @@ const User = () => {
       closeModal();
       fetchUserData();
     } catch (error) {
-      toastMessage('error', 'Failed to save user.');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to save user.');
     } finally {
       setIsSaveDisabled(false);
     }

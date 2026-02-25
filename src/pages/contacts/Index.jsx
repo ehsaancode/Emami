@@ -699,12 +699,12 @@ const Contacts = () => {
         }),
       );
       if (payload?.status !== 'success') {
-        toastMessage('error', payload?.msg || 'Failed to send invite.');
+        toastMessage('error', payload?.msg || payload?.message || 'Failed to send invite.');
         return;
       }
-      toastMessage('success', payload?.msg || 'Invites sent.');
+      toastMessage('success', payload?.msg || payload?.message || 'Invites sent.');
     } catch (error) {
-      toastMessage('error', 'Failed to send invite.');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to send invite.');
     } finally {
       setIsInviteSending(false);
     }
@@ -729,11 +729,11 @@ const Contacts = () => {
         setFamilyGroups(response.data);
       } else {
         setFamilyGroups([]);
-        toastMessage('error', response?.msg || 'Failed to fetch family groups');
+        toastMessage('error', response?.msg || response?.message || 'Failed to fetch family groups');
       }
     } catch (error) {
       setFamilyGroups([]);
-      toastMessage('error', 'Failed to fetch family groups');
+      toastMessage('error', error?.response?.data?.msg || error?.message || 'Failed to fetch family groups');
     } finally {
       setFamilyGroupsLoading(false);
     }

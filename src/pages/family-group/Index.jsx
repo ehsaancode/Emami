@@ -185,12 +185,12 @@ const FamilyGroup = () => {
 
             } else {
                 setData([]);
-                toastMessage("error", payload?.msg || "Failed to fetch data");
+                toastMessage("error", payload?.msg || payload?.message || "Failed to fetch data");
             }
         } catch (err) {
             console.error("Fetch error:", err);
             setData([]);
-            toastMessage("error", "Failed to fetch data");
+            toastMessage("error", err?.response?.data?.msg || err?.message || "Failed to fetch data");
         } finally {
             setIsLoading(false); // Stop loader
         }
