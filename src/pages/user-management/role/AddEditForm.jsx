@@ -112,7 +112,7 @@ const RoleAddEditForm = ({ saveData, closeModal, formPayload, isEdit, isModalOpe
         const actions = Object.entries(module)
           .filter(([action]) => action !== 'module')
           .map(([action, meta]) => {
-            const permissionId = meta?.id ?? meta?.permission_Id ?? meta?.role_permission_Permission_Id ?? null;
+            const permissionId = meta?.permission_Id ?? meta?.role_permission_Permission_Id ?? meta?.id ?? null;
             const isSelected =
               meta?.value === true || meta?.value === 1 || selectedPermissionIds.has(String(permissionId));
 
